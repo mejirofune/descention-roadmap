@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Roadmap</title>
+  <style>
+    :root {
+      --crimson: #dc143c;
+      --azure: #00bfff;
+      --bg: #05050a;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      color: #fff;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(220,20,60,0.35), transparent 45%),
+        radial-gradient(circle at 80% 40%, rgba(0,191,255,0.35), transparent 45%),
+        radial-gradient(circle at 50% 80%, rgba(220,20,60,0.25), transparent 50%),
+        linear-gradient(180deg, #03030a, #070712 60%, #03030a);
+      background-size: 200% 200%;
+      animation: neonFlow 18s ease-in-out infinite;
+      background-attachment: fixed;
+    }
+
+    @keyframes neonFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1 {
+      text-align: center;
+      padding: 2rem 1rem 1rem;
+      letter-spacing: 2px;
+      background: linear-gradient(90deg, var(--crimson), var(--azure));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .timeline {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 6px;
+      background: linear-gradient(180deg, var(--crimson), var(--azure), var(--crimson));
+      box-shadow:
+        0 0 20px rgba(0,191,255,0.8),
+        0 0 40px rgba(220,20,60,0.6);
+      transform: translateX(-50%);
+      border-radius: 4px;
+      z-index: 0;
+    }
+
+    .roadmap {
+      position: relative;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .milestone {
+      z-index: 1;
+      position: relative;
+      position: relative;
+      background: rgba(255,255,255,0.04);
+      border-radius: 16px;
+      padding: 1rem;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      box-shadow: 0 0 20px rgba(0,191,255,0.15);
+    }
+
+    .milestone:active {
+      transform: scale(0.96);
+    }
+
+    .milestone:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 0 30px rgba(220,20,60,0.7);
+    }
+
+    .milestone img {
+      width: 100%;
+      border-radius: 12px;
+      transition: filter 0.3s ease, transform 0.3s ease;
+    }
+
+    .milestone:hover img {
+      filter: brightness(1.2);
+    }
+
+    .milestone.active img {
+      transform: scale(1.05) rotate(0.5deg);
+    }
+
+    .milestone h3 {
+      margin: 0.75rem 0 0.25rem;
+      background: linear-gradient(90deg, var(--crimson), var(--azure));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .release {
+      font-size: 0.85rem;
+      opacity: 0.85;
+    }
+
+    .countdown {
+      font-size: 0.85rem;
+      margin-top: 0.25rem;
+      color: var(--azure);
+    }
+
+    .details {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .milestone.active .details {
+      max-height: 220px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.8rem;
+      opacity: 0.6;
+    }
+      .admin-panel {
+      max-width: 600px;
+      margin: 2rem auto 4rem;
+      padding: 1.5rem;
+      background: rgba(0,0,0,0.5);
+      border-radius: 16px;
+      box-shadow: 0 0 30px rgba(0,191,255,0.25);
+    }
+
+    .admin-panel h2 {
+      text-align: center;
+      background: linear-gradient(90deg, var(--crimson), var(--azure));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .admin-panel label {
+      display: block;
+      margin-top: 1rem;
+      font-size: 0.85rem;
+    }
+
+    .admin-panel input,
+    .admin-panel textarea {
+      width: 100%;
+      margin-top: 0.25rem;
+      padding: 0.5rem;
+      border-radius: 8px;
+      border: none;
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+    }
+
+    .admin-panel button {
+      margin-top: 1.25rem;
+      width: 100%;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(90deg, var(--crimson), var(--azure));
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(220,20,60,0.5);
+    }
+
+    .admin-panel button:hover {
+      box-shadow: 0 0 30px rgba(0,191,255,0.8);
+    }
+
+      .progress {
+      margin-top: 0.5rem;
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+      height: 10px;
+      overflow: hidden;
+    }
+
+    .progress span {
+      display: block;
+      height: 100%;
+      background: linear-gradient(90deg, var(--crimson), var(--azure));
+      box-shadow: 0 0 10px var(--azure);
+      transition: width 0.6s ease;
+    }
+
+  </style>
+</head>
+<body>
+  <h1>Development Roadmap</h1>
+
+  <section class="roadmap">
+    <div class="timeline"></div>
+
+    <div class="milestone" onclick="toggleDetails(this)">
+      <img src="https://via.placeholder.com/600x350?text=Phase+1" />
+      <h3>Phase 1 – Foundation</h3>
+      <div class="release">Estimated Release: March 2026</div>
+      <div class="countdown" data-date="2026-03-01"></div>
+      <div class="progress"><span style="width:85%"></span></div>
+      <div class="details">Core systems, UI framework, and performance baseline.</div>
+    </div>
+
+    <div class="milestone" onclick="toggleDetails(this)">
+      <img src="https://via.placeholder.com/600x350?text=Phase+2" />
+      <h3>Phase 2 – Expansion</h3>
+      <div class="release">Estimated Release: June 2026</div>
+      <div class="countdown" data-date="2026-06-01"></div>
+      <div class="progress"><span style="width:60%"></span></div>
+      <div class="details">New modules, advanced logic, scalability improvements.</div>
+    </div>
+
+    <div class="milestone" onclick="toggleDetails(this)">
+      <img src="https://via.placeholder.com/600x350?text=Phase+3" />
+      <h3>Phase 3 – Beta</h3>
+      <div class="release">Estimated Release: September 2026</div>
+      <div class="countdown" data-date="2026-09-01"></div>
+      <div class="progress"><span style="width:35%"></span></div>
+      <div class="details">Closed beta testing and feedback iteration.</div>
+    </div>
+
+    <div class="milestone" onclick="toggleDetails(this)">
+      <img src="https://via.placeholder.com/600x350?text=Phase+4" />
+      <h3>Phase 4 – Optimization</h3>
+      <div class="release">Estimated Release: December 2026</div>
+      <div class="countdown" data-date="2026-12-01"></div>
+      <div class="progress"><span style="width:20%"></span></div>
+      <div class="details">Performance tuning, polish, and stability improvements.</div>
+    </div>
+
+    <div class="milestone" onclick="toggleDetails(this)">
+      <img src="https://via.placeholder.com/600x350?text=Phase+5" />
+      <h3>Phase 5 – Launch</h3>
+      <div class="release">Estimated Release: Q1 2027</div>
+      <div class="countdown" data-date="2027-02-01"></div>
+      <div class="progress"><span style="width:5%"></span></div>
+      <div class="details">Public release and long-term support setup.</div>
+    </div>
+
+    <div class="milestone" onclick="toggleDetails(this)">
+      <img src="https://via.placeholder.com/600x350?text=Phase+6" />
+      <h3>Phase 6 – Post-Launch</h3>
+      <div class="release">Ongoing</div>
+      <div class="countdown" data-date="2027-06-01"></div>
+      <div class="progress"><span style="width:0%"></span></div>
+      <div class="details">Updates, community feedback, and future roadmap planning.</div>
+    </div>
+  </section>
+
+  <section class="admin-panel" style="display:none">
+    <h2>Admin Panel</h2>
+    <p>Edit milestone content and dates. Changes save automatically.</p>
+
+    <label>Milestone Title
+      <input type="text" id="admin-title" />
+    </label>
+
+    <label>Release Date (YYYY-MM-DD)
+      <input type="date" id="admin-date" />
+    </label>
+
+    <label>Description
+      <textarea id="admin-desc"></textarea>
+    </label>
+
+    <button onclick="saveAdminEdits()">Save Changes</button>
+  </section>
+
+  <footer>
+    Admin-editable roadmap • Changes saved locally in your browser
+  </footer>
+
+  <script>
+    function toggleDetails(element) {
+      element.classList.toggle('active');
+    }
+
+    function updateCountdowns() {
+      document.querySelectorAll('.countdown').forEach(el => {
+        const target = new Date(el.dataset.date);
+        const now = new Date();
+        const diff = target - now;
+
+        if (diff <= 0) {
+          el.textContent = 'Released';
+          return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        el.textContent = `${days} days remaining`;
+      });
+    }
+
+    updateCountdowns();
+
+    document.addEventListener('keydown', e => {
+      if (e.ctrlKey && e.shiftKey && e.altKey && e.key.toLowerCase() === 'a') {
+        const panel = document.querySelector('.admin-panel');
+        panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+      }
+    });
+    setInterval(updateCountdowns, 60000);
+
+    const milestones = document.querySelectorAll('.milestone');
+    let selectedMilestone = null;
+
+    milestones.forEach(m => {
+      m.addEventListener('click', () => {
+        selectedMilestone = m;
+        document.getElementById('admin-title').value = m.querySelector('h3').textContent;
+        document.getElementById('admin-desc').value = m.querySelector('.details').textContent.trim();
+        document.getElementById('admin-date').value = m.querySelector('.countdown').dataset.date;
+      });
+    });
+
+    function saveAdminEdits() {
+      if (!selectedMilestone) return alert('Click a milestone first');
+
+      selectedMilestone.querySelector('h3').textContent = document.getElementById('admin-title').value;
+      selectedMilestone.querySelector('.details').textContent = document.getElementById('admin-desc').value;
+
+      const newDate = document.getElementById('admin-date').value;
+      const cd = selectedMilestone.querySelector('.countdown');
+      cd.dataset.date = newDate;
+
+      localStorage.setItem('roadmapData', document.querySelector('.roadmap').innerHTML);
+      updateCountdowns();
+    }
+
+    const saved = localStorage.getItem('roadmapData');
+    if (saved) document.querySelector('.roadmap').innerHTML = saved;
+  </script>
+</body>
+</html>
